@@ -18,7 +18,7 @@ Stanford Swift Course (Swift 4): https://www.youtube.com/playlist?list=PL3d_SFOi
 Ray Wanderlich iOS Tutorials: https://www.raywenderlich.com/ios/learn
 
 ## Useful Links
-Online Swift Playground: Online Swift Playground
+Online Swift Playground: http://online.swiftplayground.run
 
 # Course TimeTable
 ## Week1
