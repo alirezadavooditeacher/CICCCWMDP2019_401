@@ -2,8 +2,7 @@
 ### Swift Programming
 
 # References:
-Big Java: Late Objects: by Cay S. Horstmann
-Amazon Link: https://www.amazon.ca/Big-Java-Cay-S-Horstmann/dp/1118087887
+https://books.apple.com/ca/book/the-swift-programming-language-swift-5-0/id881256329
 
 # Structure of the Git Repository: <br />
 Assignments: Contains the assignment files <br />
@@ -11,75 +10,37 @@ InClassCoding: Contains Java files for the in-class activities <br />
 LectureNotes: Reference lecture notes for self-study <br />
 
 # Basic Outline:
-Link: https://github.com/alirezadavooditeacher/CICCCWMDP2019_202/blob/master/WMADP%20202%20Java%20course%20outline.pdf
+Link: 
 
 # Supplementary Materials:
 ## Video Tutorals <br />
-Java Tutorial For Beginners: https://www.youtube.com/watch?v=r59xYe3Vyks&list=PLS1QulWo1RIbfTjQvTdj8Y6yyq4R7g-Al <br />
-MIT Java Programming: https://www.youtube.com/playlist?list=PLXqaWKDQpdPn4UJ2fOFxl6Yl_DC51FFUL  <br />
+Stanford Swift Course (Swift 4): https://www.youtube.com/playlist?list=PL3d_SFOiG7_8ofjyKzX6Nl1wZehbdiZC_
+Ray Wanderlich iOS Tutorials: https://www.raywenderlich.com/ios/learn
 
 ## Useful Links
-PlantText UML Editor: https://www.planttext.com/ 
-PlantText is an online tool that quickly generates images from text. Primarily, it is used to generate UML (Unified Modeling Language) diagrams. It is based on a text language called PlantUML. 
-
-Github Video Tutorial: https://www.youtube.com/watch?v=SWYqp7iY_Tc
-
-MVC:
-https://www.upgrad.com/blog/mvc-architecture-in-java/
-https://www.tutorialspoint.com/design_pattern/mvc_pattern.htm
-Standford Video: https://www.youtube.com/watch?v=gI3pz7eFgfo&t=645s
-
-Genrics:
-https://docs.oracle.com/javase/tutorial/java/generics/index.html
-
+Online Swift Playground: http://online.swiftplayground.run
 
 # Course TimeTable
 ## Week1
-- Introductory Lectures (Java Basics)
-- Live Coding+Lecture - Problem set1 
-- Assignment 1
+- Introduction+Git setup + Environment Setup
+- Chapter one (Basics, Optionak, Live coding) 
+- 
 
 ## Week2
-- Introductory Lectures (Java Basics)
-- Live Coding+Lecture - Problem set1 
-- Assignment 2
-- Introductory Lecture (Java classes and methods)
-- Live Coding (RegistrationSystem example)
-- Assignment 3 
-- Assignment 4 (Group Assignment)
+- TB
 
 ## Week3
-- Lecture: Inhertance + Interfaces
-- Lecture: OOP design
-- One session on how to use github for the assignment
-- Inheritance, Polymorphism+SuperClass/Class example (in-class coding)
-- Inheritance, Polymorphism+Shape example (in-class coding)
-- Assignment 5
+- TB
 
 ## Week4
-- Lecture about delegate/protocol
-- Assignment 6 about Delegate and Protocol
-- Lecture about MVC (Model-View-Controller)
+- TB
 
 ## Week5
-- Discussion about Observer-Observable - The Java built-in is depricated.
-- Discussion about Generics: https://docs.oracle.com/javase/tutorial/java/generics/index.html
-- Discussiion about Iterator/Iterable - Comparator/Comparable
+- TB
 
 ## Week6
-- Inner/Nested/Local classes: https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
-- Lambda expression/Functional Interfaces
-- Enum: https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
-- Method references: https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html
+- TB
 
 ## Week7
-- Serialization: 
-- --- https://www.tutorialspoint.com/java/java_serialization
-- --- https://www.geeksforgeeks.org/serialization-in-java/
-- --- https://www.geeksforgeeks.org/transient-keyword-java/
-- Multi-threading
-- --- https://www.tutorialspoint.com/java/java_multithreading
-- --- https://www.tutorialspoint.com/java/java_thread_synchronization.htm
-
-## Week8
+- TB
 
