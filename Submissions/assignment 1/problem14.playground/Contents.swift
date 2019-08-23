@@ -6,20 +6,12 @@ func sortString (_ sorting:(String, String)->Bool, list: [String]) {
 }
 
 func sortAsc (_ s1:String, _ s2:String) -> Bool {
-    if s1 < s2 {
-        return true
-    } else {
-        return false
-    }
+    return s1 < s2
 }
 
 func sortDesc (_ s1:String, _ s2:String) -> Bool {
-    if s1 > s2 {
-        return true
-    } else {
-        return false
-    }
+    return s1 > s2
 }
 
 let list = ["Shoko", "Shihomi", "Lucas", "Rose", "Henrique"];
-sortString(sortAsc, list: list)
+sortString(sortDesc, list: list)

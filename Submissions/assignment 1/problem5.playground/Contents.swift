@@ -11,6 +11,7 @@ func getX(num1 a:Int, num2 b:Int) {
     
     var t = 0;
     for i in 3... {
+        
         if f1(t:i) >= f2(t:i) {
             t = i
             break
