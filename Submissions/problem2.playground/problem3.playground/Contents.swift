@@ -4,8 +4,6 @@ import UIKit
 
 var str = "Hello, playground"
 
-// problem3
-
 func digit(a:Int){
     let ten = a / 10
     let one = a - ten * 10
