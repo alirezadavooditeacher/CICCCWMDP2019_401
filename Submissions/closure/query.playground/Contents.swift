@@ -82,3 +82,4 @@ print(filter(numList: arrInt, predicates: arrPredicates))
 
 
 
+
