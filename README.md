@@ -21,20 +21,32 @@ Ray Wanderlich iOS Tutorials: https://www.raywenderlich.com/ios/learn
 ## Useful Links
 Online Swift Playground: http://online.swiftplayground.run
 
+## Advanced Topic
+- Protocol-Oriented Programming in Swift: https://developer.apple.com/videos/play/wwdc2015/408/
+- Building Better Apps with Value Types in Swift: https://developer.apple.com/videos/play/wwdc2015/414/
+- Swift WWDC: https://developer.apple.com/videos/developer-tools/swift
+
 # Course TimeTable
 ## Week1
 - Introduction+Git setup + Environment Setup
-- Chapter one (Basics, Optionak, Live coding)
--
+- Basics, Optionak, Live coding 
+- String, Characters
+- Collections
+- Assignment 1
 
 ## Week2
-- TB
+- Functions
+- Closures
+- Assignment 2
 
 ## Week3
-- TB
+- Enumeration
+- Classes, Struct
+- Methods
+- Assignment 3
 
 ## Week4
-- TB
+- Properties
 
 ## Week5
 - TB
