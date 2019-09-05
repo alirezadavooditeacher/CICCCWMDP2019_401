@@ -1,10 +1,10 @@
 import UIKit
 
-struct DateFormatted {
+struct Date {
     var day = 0
     var month = 0
     var year = 0
-    static func setDate(days:Int) -> DateFormatted? {
+    static func setDate(days:Int) -> Date? {
         //format to create starting date
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -17,14 +17,14 @@ struct DateFormatted {
                 let month = Calendar.current.component(.month, from: newDate)
                 let year = Calendar.current.component(.year, from: newDate)
                 //new instance
-                let date = DateFormatted(day: day, month: month, year: year)
+                let date = Date(day: day, month: month, year: year)
                 return date
             }
         }
         return nil
     }
 }
-var dateFormatted = DateFormatted.setDate(days: 365)!;
+var dateFormatted = Date.setDate(days: 365)!;
 
 enum WeekDay:String {
     case monday = "Monday"
@@ -35,7 +35,7 @@ enum WeekDay:String {
     case saturday = "Saturday"
     case sunday = "Sunday"
     
-    static func getWeekDay (date: DateFormatted) -> WeekDay? {
+    static func getWeekDay (date: Date) -> WeekDay? {
         //prepare format for the new date
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
