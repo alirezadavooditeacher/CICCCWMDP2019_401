@@ -4,46 +4,73 @@ import UIKit
 
 var str = "Hello, playground"
 
-let arr = ["OneTwo", "FiveHandred", "FifteenFive", "25Five", "1000TwentyFive"]
+let arr = ["sum", "difference", "multiplication", "power", "division"]
 
-let dictionary = [OneTwo: (1,2), FiveHandred:(5, 100), FifteenFive:(15, 5), 25Five:(25, 5), 1000TwentyFive:(1000, 25)]
 
-func sum(num1 a:Int, num2 b:Int) -> Double {
-    return (Double)(a + b)
-}
 
-func division(num1 a:Int, num2 b:Int) -> Double {
-    if a > b {
-        return (Double)(a / b)
+
+
+func caluculator(num1 a:Int, num2 b:Int, operators mark:String) -> (Double, (Int, Int) -> Double)? {
+   
+    func sum(num1 a:Int, num2 b:Int) -> Double {
+        print("sum")
+        return (Double)(a + b)
+    }
+    
+    func division(num1 a:Int, num2 b:Int) -> Double {
+        print("division")
+        if a > b {
+            return (Double)(a / b)
+        } else {
+            return (Double)(b / a)
+        }
+    }
+    
+    func difference(num1 a:Int, num2 b:Int) -> Double {
+        print("differences")
+        if a > b {
+            return (Double)(a - b)
+        } else {
+            return (Double)(b - a)
+        }
+    }
+    
+    func power(num1 a:Int, num2 b:Int) -> Double {
+        print("power")
+        var answer:Int = a
+        for a in 1..<b {
+            answer *= a
+        }
+        return (Double)(answer)
+    }
+    
+    func multiplication(num1 a:Int, num2 b:Int) -> Double {
+        print("multiplication")
+        return (Double)(a * b)
+    }
+    
+    let dictionary = ["sum": sum, "difference": difference, "power":power, "division":division, "multiplication":multiplication]
+    
+   
+    // answer will have only function
+    // in the condition the optional is unwrapped.
+    if  let answer = dictionary[mark] {
+        let result = answer(a, b)
+        return (result, answer)
     } else {
-        return (Double)(b / a)
+        return nil
     }
-}
-
-func difference(num1 a:Int, num2 b:Int) -> Double {
-    if a > b {
-        return (Double)(a - b)
-    } else {
-        return (Double)(b - a)
-    }
-}
-
-func power(num1 a:Int, num2 b:Int) -> Double {
-    var answer:Int
-    for a in 0...b {
-        answer *= a
-    }
-    return (Double)(answer)
-}
-
-func multiplicaton(num1 a:Int, num2 b:Int) -> Double {
-    return (Double)(a * b)
-}
-
-func caluculator(num1 a:Int, num2 b:Int, operators mark:(Int, Int) -> Double) -> (Int, ??){
+    
     
 }
 
+for value in arr {
+    if let (result, function) = caluculator(num1: 4, num2: 2, operators: value){
+        print(result)
+    } else {
+        print("fail")
+    }
+}
 
 
 

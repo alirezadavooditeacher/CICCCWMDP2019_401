@@ -2,9 +2,14 @@
 
 import UIKit
 
-var str = "Hello, playground"
+//A constant called func4 whose type is ()->[()->Void]
 
-let func4:() -> [() ->Void] = {{() -> [() -> Void in print(str)] }}
+func someFun()->[()->Void] {
+    
+    return [{() -> Void in print("made it!")}]
+}
+
+let func4 = someFun
 
 //let func() -> () -> Void{
 //    func(){

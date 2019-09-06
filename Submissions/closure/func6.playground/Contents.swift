@@ -2,14 +2,14 @@
 
 import UIKit
 
-var str = "Hello, playground"
+//A variable called func6 whose type is ([(int)->Void]) -> [(int)->void]
 
 
 
-func func6(_ closure:Int -> (Void?)) -> (Int) -> Void {
-    func(num1 a:Int) -> Void {
-        print(a)
-    }
+func func6(_ closure:[(Int) -> Void]) -> [(Int) -> Void] {
+    closure[0](10)
+    let arr = [{(intF:Int)->Void in print("made it! \(intF)") }]
+    return arr
 }
 
-func6()
+func6([{(intF:Int)->Void in print("made it! \(intF)") }])
