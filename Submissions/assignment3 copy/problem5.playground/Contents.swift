@@ -22,6 +22,8 @@ class Classroom {
     
     
     func generateList(){
+        
+        // these syntax is for only structure not class 
         arrStudents.append(Student(firstName: "Shihomi", lastName: "Kitajima", address: "62nd ave", YearOfBirth: 1997, gpa: 2.8))
         arrStudents.append(Student(firstName: "Rose", lastName: "lay", address: "metroTown", YearOfBirth: 1993, gpa: 5.0))
         arrStudents.append(Student(firstName: "Shoko", lastName: "Hashimoto", address: "Joyce", YearOfBirth: 1992, gpa: 4.5))
