@@ -46,13 +46,25 @@ Online Swift Playground: http://online.swiftplayground.run
 
 ## Week4
 - Properties
+- Inheritance
+- Assignment 4
 
 ## Week5
-- TB
+- Error Handeling
+- Type Casting
+- Nested Type
+- Extension
+- Assignment 5
 
 ## Week6
-- TB
+- Automatic Reference Counting
+- Memory Safety
+- Assignment 6
 
 ## Week7
-- TB
+- Generics
+- Initializer
+- Assignment 7
+- Final Exam
+
 
