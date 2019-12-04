@@ -10,27 +10,49 @@ import UIKit
 
 class DiscoveryViewController: UIViewController {
     
-    @IBOutlet weak var SearchBar: UISearchBar!
     @IBOutlet weak var TableView: UITableView!
     @IBOutlet weak var MenuCollectionVIew: UICollectionView!
-    
+    @IBAction func SideMenuTapped(){
+        print("Toggle side Menu")
+        NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
+    }
+    @IBOutlet weak var SideMenuConstraint: NSLayoutConstraint!
     
     var imageArray = [Image]()
-    var ArrayMenu = [String]()
+    var arrayMenu = [String]()
     var searchIMageName = [Image]()
-    var searching = false
-    
+    var sideMenuOpen = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Discovery"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.orange ]
         CreateImageArray()
         CreateMenuLabel()
-        setupNavigationBarItems()
         
         let width = (MenuCollectionVIew.frame.size.width - 5) / 2
         let layout = MenuCollectionVIew.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
+        
+        let searchImage = UIImage(imageLiteralResourceName: "search-30")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: nil, action: #selector(tapSearchButtom))
+        
+        //        let listItem = UIImage(imageLiteralResourceName: "search-30")
+        //        navigationItem.lefttBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: nil, action: #selector(tapSearchButtom))
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleSideMenu), name: NSNotification.Name("ToggleSideMenu"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(showProfile), name: NSNotification.Name("ShowProfile"), object: nil)
+               
+        NotificationCenter.default.addObserver(self, selector: #selector(showSetting), name: NSNotification.Name("ShowSetting"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showContact), name: NSNotification.Name("ShowContact"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showAbout), name: NSNotification.Name("ShowAbout"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showLogout), name: NSNotification.Name("ShowLogout"), object: nil)
+        
     }
+    
+    
     
     func CreateMenuLabel() {
         
@@ -39,57 +61,85 @@ class DiscoveryViewController: UIViewController {
         let label3 = "VIP Only"
         let label4 = "Monthly Choice"
         let label5 = "Category"
-        ArrayMenu.append(label1)
-        ArrayMenu.append(label2)
-        ArrayMenu.append(label3)
-        ArrayMenu.append(label4)
-        ArrayMenu.append(label5)
+        let label6 = "Subscribed Uploader"
+        arrayMenu.append(label1)
+        arrayMenu.append(label2)
+        arrayMenu.append(label3)
+        arrayMenu.append(label4)
+        arrayMenu.append(label5)
+        arrayMenu.append(label6)
     }
     
     func CreateImageArray() {
-        let image1 = Image(title: "Meat", image: #imageLiteral(resourceName: "meat"))
-        let image2 = Image(title: "Pizza", image: #imageLiteral(resourceName: "Pizza"))
+        let image1 = Image(title: "Appetizer", image: #imageLiteral(resourceName: "meat"))
+        let image2 = Image(title: "Main Dish", image: #imageLiteral(resourceName: "Pizza"))
         let image3 = Image(title: "Salad", image: #imageLiteral(resourceName: "salad"))
-        let image4 = Image(title: "Soup", image: #imageLiteral(resourceName: "soup"))
-        let image5 = Image(title: "Dessert", image: #imageLiteral(resourceName: "dessert"))
+        let image4 = Image(title: "Dessert", image: #imageLiteral(resourceName: "dessert"))
+        let image5 = Image(title: "Beverage", image: #imageLiteral(resourceName: "drink"))
         
         imageArray.append(image1)
         imageArray.append(image2)
         imageArray.append(image3)
         imageArray.append(image4)
         imageArray.append(image5)
-
-    }
-    
-    private func setupNavigationBarItems(){
-//        let searchButton = UIButton(type: .system)
-//        searchButton.setImage(#imageLiteral(resourceName: "search-30").withRenderingMode(.alwaysTemplate), for: .normal)
-//        searchButton.contentMode = .scaleAspectFit
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchButton)
-        let searchImage = UIImage(imageLiteralResourceName: "search-30")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: nil, action: #selector(tapSearchButtom))
-    }
-    @objc func tapSearchButtom(){
-        let searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
-        searchBar.placeholder = "Your placeholder"
-        let leftNavBarButton = UIBarButtonItem(customView:searchBar)
-        self.navigationItem.leftBarButtonItem = leftNavBarButton
         
     }
     
-//    @IBAction func searchAction(sender: UIBarButtonItem) {
-//        // Create the search controller and specify that it should present its results in this same view
-//        searchController = UISearchController(searchResultsController: nil)
-//
-//        // Set any properties (in this case, don't hide the nav bar and don't show the emoji keyboard option)
-//        searchController.hidesNavigationBarDuringPresentation = false
-//        searchController.searchBar.keyboardType = UIKeyboardType.ASCIICapable
-//
-//        // Make this class the delegate and present the search
-//        self.searchController.searchBar.delegate = self
-//        presentViewController(searchController, animated: true, completion: nil)
+    
+    private func setupNavigationBarItems(){
+        let searchButton = UIButton(type: .system)
+        searchButton.setImage(#imageLiteral(resourceName: "search-30").withRenderingMode(.alwaysTemplate), for: .normal)
+        searchButton.contentMode = .scaleAspectFit
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchButton)
+    }
+    
+    @objc func tapSearchButtom(){
+
+    }
+    @objc func toggleSideMenu() {
+        if sideMenuOpen{
+            sideMenuOpen = false
+            SideMenuConstraint.constant = -150
+        }else{
+            sideMenuOpen = true
+            SideMenuConstraint.constant = 0
+        }
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func showProfile(){
+        print("show Profile")
+        
+        let Storyboard: UIStoryboard = UIStoryboard(name: "shihomi", bundle: nil)
+        let vc = Storyboard.instantiateViewController(withIdentifier: "profilePage") as! TableViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+        //performSegue(withIdentifier: "profile", sender: nil)
+    }
+    
+    
+//    @objc func showProfile(){
+//        print("show Profile")
+//        performSegue(withIdentifier: "profile", sender: nil)
 //    }
-//
+    @objc func showSetting(){
+        print("show Setting")
+        performSegue(withIdentifier: "setting", sender: nil)
+    }
+    @objc func showContact(){
+        print("show Contact")
+        performSegue(withIdentifier: "contact", sender: nil)
+    }
+    @objc func showAbout(){
+        print("show About")
+        performSegue(withIdentifier: "about", sender: nil)
+    }
+    @objc func showLogout(){
+        print("show Logout")
+        performSegue(withIdentifier: "logout", sender: nil)
+    }
+    
     
 }
 
@@ -100,26 +150,21 @@ extension DiscoveryViewController: UITableViewDataSource, UITableViewDelegate{
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searching{
-            return searchIMageName.count
-        }else{
-            return imageArray.count
-        }
+        
+        return imageArray.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let image = imageArray[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell") as! ImagesCell
-        if searching{
-            cell.setImage(UIimage: searchIMageName[indexPath.row])
-        }else{
-            cell.setImage(UIimage: image)
-        }
+        
+        cell.setImage(UIimage: image)
+        
         return cell
     }
     
-    //To connect new view controller with navigationController
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let viewContoller = storyboard?.instantiateViewController(withIdentifier: "RecipeViewController") as? RecipeViewController
@@ -129,89 +174,34 @@ extension DiscoveryViewController: UITableViewDataSource, UITableViewDelegate{
         viewContoller?.category = indexPath.row
         self.navigationController?.pushViewController(viewContoller!, animated: true)
         
-        if indexPath.row == 0{
-            collection_1()
-        }
+    }
         
-    }
-    
-    private func collection_1(){
-        
-    }
-    
 }
-
-/* v1
- extension DiscoveryViewController: UISearchBarDelegate{
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchIMageName = imageArray.filter({$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()})
-        searching = true
-        TableView.reloadData()
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searching = false
-        searchBar.text = ""
-        TableView.reloadData()
-    }
-}
-*/
-
-extension DiscoveryViewController: UISearchBarDelegate{
-    
-//    @IBAction func searchAction(sender: UIBarButtonItem) {
-//        // Create the search controller and specify that it should present its results in this same view
-//         let searchController = UISearchController(searchResultsController: nil)
-//
-//        // Set any properties (in this case, don't hide the nav bar and don't show the emoji keyboard option)
-//        searchController.hidesNavigationBarDuringPresentation = false
-//        searchController.searchBar.keyboardType = UIKeyboardType.ASCIICapable
-//
-//        // Make this class the delegate and present the search
-//        self.searchController.searchBar.delegate = self
-//        presentViewController(searchController, animated: true, completion: nil)
-//    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchIMageName = imageArray.filter({ $0.title.lowercased().contains(searchText.lowercased())})
-        searching = true
-        TableView.reloadData()
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searching = false
-        searchBar.text = ""
-        TableView.reloadData()
-    }
-
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searching = false
-        searchBar.endEditing(true)
-    }
-}
-
-
-
-
 
 
 extension DiscoveryViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ArrayMenu.count
+        return arrayMenu.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-         let cell = MenuCollectionVIew.dequeueReusableCell(withReuseIdentifier: "MenuCell", for: indexPath) as! MenuCollectionViewCell
-        cell.MenuLabel.text = ArrayMenu[indexPath.row]
+        let cell = MenuCollectionVIew.dequeueReusableCell(withReuseIdentifier: "MenuCell", for: indexPath) as! MenuCollectionViewCell
+        cell.MenuLabel.text = arrayMenu[indexPath.row]
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        return
+    }
     func roundCorners(view: UIView,cornerRadius: Double) {
-          view.layer.cornerRadius = CGFloat(cornerRadius)
-          view.clipsToBounds = true
-      }
+        view.layer.cornerRadius = CGFloat(cornerRadius)
+        view.clipsToBounds = true
+    }
 }
+
+
+
 
 class MenuCollectionViewCell: UICollectionViewCell{
     @IBOutlet weak var MenuLabel: UILabel!
