@@ -17,6 +17,11 @@ class DiscoveryViewController: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
     }
     @IBOutlet weak var SideMenuConstraint: NSLayoutConstraint!
+    @IBAction func SearchBarItem() {
+        print("Tab searchBar")
+        NotificationCenter.default.post(name: NSNotification.Name("ShowSearch"), object: nil)
+    }
+    
     
     var imageArray = [Image]()
     var arrayMenu = [String]()
@@ -34,24 +39,18 @@ class DiscoveryViewController: UIViewController {
         let layout = MenuCollectionVIew.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
         
-        let searchImage = UIImage(imageLiteralResourceName: "search-30")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: nil, action: #selector(tapSearchButtom))
         
-        //        let listItem = UIImage(imageLiteralResourceName: "search-30")
-        //        navigationItem.lefttBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: nil, action: #selector(tapSearchButtom))
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(toggleSideMenu), name: NSNotification.Name("ToggleSideMenu"), object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(showSearch), name: NSNotification.Name("ShowSearch"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showProfile), name: NSNotification.Name("ShowProfile"), object: nil)
-               
         NotificationCenter.default.addObserver(self, selector: #selector(showSetting), name: NSNotification.Name("ShowSetting"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showContact), name: NSNotification.Name("ShowContact"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showAbout), name: NSNotification.Name("ShowAbout"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showLogout), name: NSNotification.Name("ShowLogout"), object: nil)
         
     }
-    
     
     
     func CreateMenuLabel() {
@@ -86,16 +85,6 @@ class DiscoveryViewController: UIViewController {
     }
     
     
-    private func setupNavigationBarItems(){
-        let searchButton = UIButton(type: .system)
-        searchButton.setImage(#imageLiteral(resourceName: "search-30").withRenderingMode(.alwaysTemplate), for: .normal)
-        searchButton.contentMode = .scaleAspectFit
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchButton)
-    }
-    
-    @objc func tapSearchButtom(){
-
-    }
     @objc func toggleSideMenu() {
         if sideMenuOpen{
             sideMenuOpen = false
@@ -115,14 +104,13 @@ class DiscoveryViewController: UIViewController {
         let Storyboard: UIStoryboard = UIStoryboard(name: "shihomi", bundle: nil)
         let vc = Storyboard.instantiateViewController(withIdentifier: "profilePage") as! TableViewController
         self.navigationController?.pushViewController(vc, animated: true)
-        //performSegue(withIdentifier: "profile", sender: nil)
     }
     
+    @objc func showSearch(){
+        print("show Search")
+        performSegue(withIdentifier: "searchPage", sender: nil)
+    }
     
-//    @objc func showProfile(){
-//        print("show Profile")
-//        performSegue(withIdentifier: "profile", sender: nil)
-//    }
     @objc func showSetting(){
         print("show Setting")
         performSegue(withIdentifier: "setting", sender: nil)
@@ -147,10 +135,7 @@ class DiscoveryViewController: UIViewController {
 
 extension DiscoveryViewController: UITableViewDataSource, UITableViewDelegate{
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return imageArray.count
         
     }
@@ -166,14 +151,12 @@ extension DiscoveryViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let viewContoller = storyboard?.instantiateViewController(withIdentifier: "RecipeViewController") as? RecipeViewController
         let image = imageArray[indexPath.row]
         viewContoller?.T_image = image.image
         viewContoller?.T_Name = image.title
         viewContoller?.category = indexPath.row
         self.navigationController?.pushViewController(viewContoller!, animated: true)
-        
     }
         
 }
@@ -194,10 +177,6 @@ extension DiscoveryViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         return
     }
-    func roundCorners(view: UIView,cornerRadius: Double) {
-        view.layer.cornerRadius = CGFloat(cornerRadius)
-        view.clipsToBounds = true
-    }
 }
 
 
@@ -205,4 +184,6 @@ extension DiscoveryViewController: UICollectionViewDelegate, UICollectionViewDat
 
 class MenuCollectionViewCell: UICollectionViewCell{
     @IBOutlet weak var MenuLabel: UILabel!
+   
+   
 }

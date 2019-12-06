@@ -9,27 +9,17 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-    
-    
-    
+
     let RecipeListCreator = recipeListCreator()
-    
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        // Do any additional setup after loading the view.
         
         //        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "recipeItem")
         //        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "creatorsProfie")
         
         let app = UINavigationBarAppearance()
-        //
         //        tableView.rowHeight = 100.0
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

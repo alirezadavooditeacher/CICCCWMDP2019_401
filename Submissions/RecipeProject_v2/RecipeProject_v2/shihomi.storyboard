@@ -158,10 +158,7 @@
                             <outlet property="delegate" destination="AVe-0E-5aG" id="hiN-UK-Fbc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Creator's Profile " id="A9Y-Qm-OKK" userLabel="Creator's Profile">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="n7z-Nv-C7g"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="tCy-hu-4YV"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Creator's Profile " id="A9Y-Qm-OKK" userLabel="Creator's Profile"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HOx-4U-6fk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -172,7 +169,7 @@
             <objects>
                 <tableViewController id="5Rh-vn-Bam" customClass="recipeItemTableViewController" customModule="RecipeProject_v2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="tRL-ds-BK0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
