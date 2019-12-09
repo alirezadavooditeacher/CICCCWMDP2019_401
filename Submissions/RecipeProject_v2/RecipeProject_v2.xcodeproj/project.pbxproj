@@ -24,6 +24,7 @@
 		693DFE1D23963508006EA231 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693DFE0423963508006EA231 /* TableViewController.swift */; };
 		693DFE2323977CEE006EA231 /* shihomi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 693DFE2223977CEE006EA231 /* shihomi.storyboard */; };
 		6946414723959AC900CAA2BC /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6946414623959AC900CAA2BC /* SideMenuTableViewController.swift */; };
+		6954A844239A0B730084CFD5 /* MonthlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6954A843239A0B730084CFD5 /* MonthlyViewController.swift */; };
 		69C1DE07238E4A9B006F6EE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69C1DE05238E4A9B006F6EE4 /* LaunchScreen.storyboard */; };
 		69C1DE0F238E4AE3006F6EE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69C1DE0E238E4AE3006F6EE4 /* Main.storyboard */; };
 		69C1DE17238E4AFF006F6EE4 /* ImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C1DE11238E4AFF006F6EE4 /* ImagesCell.swift */; };
@@ -54,6 +55,7 @@
 		693DFE0423963508006EA231 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		693DFE2223977CEE006EA231 /* shihomi.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = shihomi.storyboard; sourceTree = "<group>"; };
 		6946414623959AC900CAA2BC /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
+		6954A843239A0B730084CFD5 /* MonthlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyViewController.swift; sourceTree = "<group>"; };
 		69C1DDF7238E4A9A006F6EE4 /* RecipeProject_v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeProject_v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69C1DE06238E4A9B006F6EE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		69C1DE08238E4A9B006F6EE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				69C1DE13238E4AFF006F6EE4 /* DiscoveryViewController.swift */,
+				6954A843239A0B730084CFD5 /* MonthlyViewController.swift */,
 				69C1DE16238E4AFF006F6EE4 /* RecipeViewController.swift */,
 				6946414623959AC900CAA2BC /* SideMenuTableViewController.swift */,
 				69C1DE14238E4AFF006F6EE4 /* Image.swift */,
@@ -331,6 +334,7 @@
 				69C1DE1E238E4B0E006F6EE4 /* AppDelegate.swift in Sources */,
 				69C1DE19238E4AFF006F6EE4 /* DiscoveryViewController.swift in Sources */,
 				693DFE1823963508006EA231 /* recipeListCreatorItemTableViewCell.swift in Sources */,
+				6954A844239A0B730084CFD5 /* MonthlyViewController.swift in Sources */,
 				693DFE1123963508006EA231 /* iconItemTableViewCell.swift in Sources */,
 				69C1DE20238E4B19006F6EE4 /* SceneDelegate.swift in Sources */,
 				693DFE1B23963508006EA231 /* recipeItemTableViewController.swift in Sources */,

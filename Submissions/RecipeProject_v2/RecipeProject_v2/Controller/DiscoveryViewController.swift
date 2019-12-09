@@ -10,37 +10,42 @@ import UIKit
 
 class DiscoveryViewController: UIViewController {
     
-    @IBOutlet weak var TableView: UITableView!
+    @IBOutlet weak var MonthlyContainerView: UIView!
+    @IBOutlet weak var PopularContainerView: UIView!
+    @IBOutlet weak var SubscribedContainerView: UIView!
+    @IBOutlet weak var IngredientsContainerView: UIView!
+    @IBOutlet weak var EditorContainerView: UIView!
+    @IBOutlet weak var VIPContainerVIew: UIView!
+
     @IBOutlet weak var MenuCollectionVIew: UICollectionView!
     @IBAction func SideMenuTapped(){
         print("Toggle side Menu")
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
     }
     @IBOutlet weak var SideMenuConstraint: NSLayoutConstraint!
+    
     @IBAction func SearchBarItem() {
         print("Tab searchBar")
         NotificationCenter.default.post(name: NSNotification.Name("ShowSearch"), object: nil)
     }
     
     
-    var imageArray = [Image]()
     var arrayMenu = [String]()
-    var searchIMageName = [Image]()
+    
     var sideMenuOpen = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Discovery"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.orange ]
-        CreateImageArray()
         CreateMenuLabel()
         
         let width = (MenuCollectionVIew.frame.size.width - 5) / 2
         let layout = MenuCollectionVIew.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
         
-        
-        
+        initialContentView()
+        EditorContainerView.isHidden = false
         
         NotificationCenter.default.addObserver(self, selector: #selector(toggleSideMenu), name: NSNotification.Name("ToggleSideMenu"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showSearch), name: NSNotification.Name("ShowSearch"), object: nil)
@@ -52,15 +57,22 @@ class DiscoveryViewController: UIViewController {
         
     }
     
-    
+    func initialContentView(){
+        self.SubscribedContainerView.isHidden = true
+        self.MonthlyContainerView.isHidden = true
+        self.PopularContainerView.isHidden = true
+        self.IngredientsContainerView.isHidden = true
+        self.EditorContainerView.isHidden = true
+        self.VIPContainerVIew.isHidden = true
+    }
     func CreateMenuLabel() {
         
-        let label1 = "Most Popular"
-        let label2 = "Editor Choice"
-        let label3 = "VIP Only"
-        let label4 = "Monthly Choice"
-        let label5 = "Category"
-        let label6 = "Subscribed Uploader"
+        let label1 = "Subscribed Creator"
+        let label2 = "Your Ingredients Recipe"
+        let label3 = "Most Popular"
+        let label4 = "Editor Choice"
+        let label5 = "Monthly Choice"
+        let label6 = "VIP Only"
         arrayMenu.append(label1)
         arrayMenu.append(label2)
         arrayMenu.append(label3)
@@ -68,22 +80,6 @@ class DiscoveryViewController: UIViewController {
         arrayMenu.append(label5)
         arrayMenu.append(label6)
     }
-    
-    func CreateImageArray() {
-        let image1 = Image(title: "Appetizer", image: #imageLiteral(resourceName: "meat"))
-        let image2 = Image(title: "Main Dish", image: #imageLiteral(resourceName: "Pizza"))
-        let image3 = Image(title: "Salad", image: #imageLiteral(resourceName: "salad"))
-        let image4 = Image(title: "Dessert", image: #imageLiteral(resourceName: "dessert"))
-        let image5 = Image(title: "Beverage", image: #imageLiteral(resourceName: "drink"))
-        
-        imageArray.append(image1)
-        imageArray.append(image2)
-        imageArray.append(image3)
-        imageArray.append(image4)
-        imageArray.append(image5)
-        
-    }
-    
     
     @objc func toggleSideMenu() {
         if sideMenuOpen{
@@ -132,36 +128,6 @@ class DiscoveryViewController: UIViewController {
 }
 
 
-
-extension DiscoveryViewController: UITableViewDataSource, UITableViewDelegate{
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return imageArray.count
-        
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let image = imageArray[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell") as! ImagesCell
-        
-        cell.setImage(UIimage: image)
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewContoller = storyboard?.instantiateViewController(withIdentifier: "RecipeViewController") as? RecipeViewController
-        let image = imageArray[indexPath.row]
-        viewContoller?.T_image = image.image
-        viewContoller?.T_Name = image.title
-        viewContoller?.category = indexPath.row
-        self.navigationController?.pushViewController(viewContoller!, animated: true)
-    }
-        
-}
-
-
 extension DiscoveryViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -175,6 +141,51 @@ extension DiscoveryViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        //        0 = "Subscribed Creator"
+        //        1 = "Your Ingredients Recipe"
+        //        2 = "Most Popular"
+        //        3 = "Editor Choice"
+        //        4 = "Monthly Choice"
+        //        5 = "VIP Only"
+        
+        switch indexPath.row{
+        case 0:
+            UIView.animate(withDuration: 0.5, animations: {
+                self.initialContentView()
+                self.SubscribedContainerView.isHidden = false
+            })
+        case 1:
+            UIView.animate(withDuration: 0.5, animations: {
+                self.initialContentView()
+                self.IngredientsContainerView.isHidden = false
+            })
+        case 2:
+            UIView.animate(withDuration: 0.5, animations: {
+                self.initialContentView()
+                self.PopularContainerView.isHidden = false
+            })
+        case 3:
+            UIView.animate(withDuration: 0.5, animations: {
+                self.initialContentView()
+                self.EditorContainerView.isHidden = false
+            })
+        case 4:
+            UIView.animate(withDuration: 0.7, animations: {
+                self.initialContentView()
+                self.MonthlyContainerView.isHidden = false
+            })
+        case 5:
+            UIView.animate(withDuration: 0.5, animations: {
+                self.initialContentView()
+                self.VIPContainerVIew.isHidden = false
+            })
+            
+        default:
+            initialContentView()
+            self.EditorContainerView.isHidden = false
+        }
+        
         return
     }
 }
@@ -184,6 +195,13 @@ extension DiscoveryViewController: UICollectionViewDelegate, UICollectionViewDat
 
 class MenuCollectionViewCell: UICollectionViewCell{
     @IBOutlet weak var MenuLabel: UILabel!
-   
-   
+    
+    
+    //test
+    //    override var isSelected: Bool{
+    //        didSet(newValue){
+    //            contentView.backgroundColor = newValue ? UIColor.green : UIColor.blue
+    //        }
+    //    }
+    
 }
