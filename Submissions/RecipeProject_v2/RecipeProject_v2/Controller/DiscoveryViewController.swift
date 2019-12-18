@@ -25,10 +25,14 @@ class DiscoveryViewController: UIViewController {
     @IBOutlet weak var SideMenuConstraint: NSLayoutConstraint!
     
     @IBAction func SearchBarItem() {
-        print("Tab searchBar")
+        print("Tab search Button")
         NotificationCenter.default.post(name: NSNotification.Name("ShowSearch"), object: nil)
     }
     
+    @IBAction func AddNewRecipe(_ sender: Any) {
+        print("Tab Add Button")
+        NotificationCenter.default.post(name: NSNotification.Name("AddRecipe"), object: nil)
+    }
     
     var arrayMenu = [String]()
     
@@ -50,6 +54,7 @@ class DiscoveryViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(toggleSideMenu), name: NSNotification.Name("ToggleSideMenu"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showSearch), name: NSNotification.Name("ShowSearch"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showProfile), name: NSNotification.Name("ShowProfile"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddRecipe), name: NSNotification.Name("AddRecipe"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showSetting), name: NSNotification.Name("ShowSetting"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showContact), name: NSNotification.Name("ShowContact"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showAbout), name: NSNotification.Name("ShowAbout"), object: nil)
@@ -107,6 +112,10 @@ class DiscoveryViewController: UIViewController {
         performSegue(withIdentifier: "searchPage", sender: nil)
     }
     
+    @objc func AddRecipe(){
+        print("Add Recipe")
+        performSegue(withIdentifier: "addRecipe", sender: nil)
+    }
     @objc func showSetting(){
         print("show Setting")
         performSegue(withIdentifier: "setting", sender: nil)
@@ -188,6 +197,8 @@ extension DiscoveryViewController: UICollectionViewDelegate, UICollectionViewDat
         
         return
     }
+    
+
 }
 
 
@@ -195,13 +206,29 @@ extension DiscoveryViewController: UICollectionViewDelegate, UICollectionViewDat
 
 class MenuCollectionViewCell: UICollectionViewCell{
     @IBOutlet weak var MenuLabel: UILabel!
-    
-    
+
     //test
-    //    override var isSelected: Bool{
-    //        didSet(newValue){
-    //            contentView.backgroundColor = newValue ? UIColor.green : UIColor.blue
-    //        }
-    //    }
+//        override var isSelected: Bool{
+//            didSet(newValue){
+//                contentView.backgroundColor = UIColor.brown
+//                MenuLabel.tintColor = UIColor.white
+//            }
+//        }
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let OriginalView = UIView()
+        let ChangeView = UIView()
+        
+        if OriginalView.isEqual(ChangeView){
+            ChangeView.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
+            self.selectedBackgroundView = ChangeView
+        }else{
+            ChangeView.backgroundColor = #colorLiteral(red: 0.9998212457, green: 0.9867780805, blue: 0.7689660192, alpha: 1)
+            self.backgroundView = ChangeView
+        }
+    }
     
 }
